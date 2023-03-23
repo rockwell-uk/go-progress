@@ -6,7 +6,7 @@ require (
 	github.com/rockwell-uk/csync v0.0.0-20230120102944-9cfc4a9dc1c8
 	github.com/rockwell-uk/go-logger v0.0.0-20230120103407-f3045e8aa9ba
 	github.com/rockwell-uk/go-utils v0.0.0-20230120103952-f9b372a60411
-	github.com/rockwell-uk/uiprogress v0.0.0-20230120103740-921b080133d9
+	github.com/rockwell-uk/uiprogress v0.0.0-20230323082204-f26bbe6d2c41
 )
 
 require (
