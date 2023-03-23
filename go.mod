@@ -1,6 +1,6 @@
 module github.com/rockwell-uk/go-progress
 
-go 1.17
+go 1.18
 
 require (
 	github.com/rockwell-uk/csync v0.0.0-20230120102944-9cfc4a9dc1c8
