@@ -6,7 +6,6 @@ import (
 )
 
 func SetupJob(jobName string, tasks []*Task) *Job {
-
 	job := NewJob(jobName, len(tasks))
 	job.AddTasks(tasks)
 	job.CalculateMagnitude()
@@ -17,7 +16,6 @@ func SetupJob(jobName string, tasks []*Task) *Job {
 	}
 
 	if ShouldShowBar() {
-
 		uiprogress.Start()
 
 		job.Bar = uiprogress.AddBar(int(job.Magnitude)).PrependCompleted()

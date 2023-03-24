@@ -17,7 +17,6 @@ type ProgressJob interface {
 }
 
 func RunJob(jobName, funcName string, job ProgressJob, magnitude int, setupInput interface{}, runInput interface{}) error {
-
 	var start time.Time = time.Now()
 	var took time.Duration
 
@@ -28,13 +27,13 @@ func RunJob(jobName, funcName string, job ProgressJob, magnitude int, setupInput
 
 	j, err := job.Setup(jobName, setupInput)
 	if err != nil {
-		return fmt.Errorf("%v %v", funcName, err)
+		return fmt.Errorf("%v %v", funcName, err.Error())
 	}
 	defer j.End(true)
 
 	_, err = job.Run(j, runInput)
 	if err != nil {
-		return fmt.Errorf("%v %v", funcName, err)
+		return fmt.Errorf("%v %v", funcName, err.Error())
 	}
 
 	took = timeutils.Took(start)
@@ -58,7 +57,6 @@ type Job struct {
 }
 
 func (j *Job) String() string {
-
 	var s string
 
 	s = fmt.Sprintf("Job: [%v]\n", j.Name)
@@ -84,7 +82,6 @@ func (j *Job) AddTask(t *Task) {
 }
 
 func (j *Job) GetTask(id string) (*Task, error) {
-
 	if j == nil {
 		return &Task{}, fmt.Errorf("task %s does not exist", id)
 	}
@@ -101,7 +98,6 @@ func (j *Job) GetTask(id string) (*Task, error) {
 }
 
 func (j *Job) CalculateMagnitude() {
-
 	var magnitude float64 = 0
 
 	for _, t := range j.GetTasks() {
@@ -115,7 +111,6 @@ func (j *Job) CalculateMagnitude() {
 }
 
 func (j *Job) GetProgress() (float64, error) {
-
 	t := j.GetStartTime()
 
 	if t == nil {
@@ -133,7 +128,6 @@ func (j *Job) GetProgress() (float64, error) {
 }
 
 func (j *Job) GetDone() (int, error) {
-
 	t := j.GetStartTime()
 
 	if t == nil {
@@ -149,7 +143,6 @@ func (j *Job) GetDone() (int, error) {
 }
 
 func (j *Job) GetRemaining() (string, error) {
-
 	t := j.GetStartTime()
 
 	if t == nil {
@@ -174,7 +167,6 @@ func (j *Job) GetRemaining() (string, error) {
 }
 
 func (j *Job) GetStatus() (string, error) {
-
 	remaining, err := j.GetRemaining()
 	if err != nil {
 		return "", err
@@ -194,7 +186,6 @@ func (j *Job) GetStatus() (string, error) {
 }
 
 func (j *Job) GetCompletedMagnitude() float64 {
-
 	var done float64
 
 	for _, t := range j.GetTasks() {
@@ -231,7 +222,6 @@ func (j *Job) GetTook() *time.Duration {
 }
 
 func (j *Job) Start() error {
-
 	if len(j.GetTasks()) == 0 {
 		return fmt.Errorf("tasks must be added to job [%v] before it can be started", j.Name)
 	}
@@ -246,7 +236,6 @@ func (j *Job) Start() error {
 }
 
 func (j *Job) End(stopProgress bool) {
-
 	mutex.Lock()
 	end := time.Now()
 	j.EndTime = &end
