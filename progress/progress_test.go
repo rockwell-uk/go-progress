@@ -9,7 +9,6 @@ import (
 )
 
 func TestJob(t *testing.T) {
-
 	n := 10
 
 	j := NewJob("TestCalcProgress", n)
@@ -60,7 +59,6 @@ func TestJob(t *testing.T) {
 	actual = append(actual, fmt.Sprintf("%v%s complete, remaining %v", progress, "%", remaining))
 
 	for i := 0; i < n; i++ {
-
 		task, _ := j.GetTask(fmt.Sprintf("task_%v", i))
 
 		task.Start()
@@ -89,7 +87,6 @@ func TestJob(t *testing.T) {
 }
 
 func TestGetProgress(t *testing.T) {
-
 	n := 10
 	m := 100.0
 	took := time.Second * 10
@@ -141,7 +138,6 @@ func TestGetProgress(t *testing.T) {
 }
 
 func TestStartJobError(t *testing.T) {
-
 	jobName := "TestStartJobError"
 	n := 10
 	j := NewJob(jobName, n)
@@ -159,7 +155,6 @@ func TestStartJobError(t *testing.T) {
 }
 
 func TestGetProgressError(t *testing.T) {
-
 	jobName := "TestGetProgressError"
 	n := 10
 	j := NewJob(jobName, n)
@@ -182,7 +177,6 @@ func TestGetProgressError(t *testing.T) {
 }
 
 func TestGetRemainingError(t *testing.T) {
-
 	jobName := "TestGetProgressError"
 	n := 10
 	j := NewJob(jobName, n)
@@ -205,12 +199,10 @@ func TestGetRemainingError(t *testing.T) {
 }
 
 func prettyPrint(data interface{}) string {
-
 	var p []byte
 
 	p, err := json.MarshalIndent(data, "", "\t")
 	if err != nil {
-		fmt.Println(err)
 		return ""
 	}
 
